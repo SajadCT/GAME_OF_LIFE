@@ -10,9 +10,16 @@ type Grid struct {
 }
 
 func newGrid(size uint) Grid {
+
+	grid := make([][]bool, size)
+
+	for i := 0; i < int(size); i++ {
+		grid[i] = make([]bool, size)
+	}
+
 	return Grid{
-		size: 0,
-		data: [][]bool{},
+		size: size,
+		data: grid,
 	}
 
 }
