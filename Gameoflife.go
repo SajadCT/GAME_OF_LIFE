@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 type Grid struct {
@@ -25,7 +26,21 @@ func newGrid(size uint) Grid {
 }
 
 func displayGrid(grid Grid) string {
-	return ""
+	var display strings.Builder
+
+	for _, row := range grid.data {
+		for _, val := range row {
+			if val {
+				display.WriteString("*")
+			} else {
+				display.WriteString("-")
+			}
+			display.WriteString(" ")
+		}
+		display.WriteString("\n")
+	}
+	return display.String()
+
 }
 
 func newGeneration(grid Grid) Grid {
@@ -47,14 +62,21 @@ func applyRules(grid Grid) Grid {
 func main() {
 	size := 10
 	grid := newGrid(uint(size))
-	//fmt.Println(grid)
+	grid.data[0][5] = true
+	grid.data[1][2] = true
+	grid.data[2][9] = true
+	grid.data[3][1] = true
+	grid.data[8][8] = true
+	grid.data[9][9] = true
 
-	for {
+	fmt.Println(displayGrid(grid))
 
-		fmt.Println(displayGrid(grid))
-		grid = applyRules(grid)
-		grid = newGeneration(grid)
+	// for {
 
-	}
+	// 	fmt.Println(displayGrid(grid))
+	// 	grid = applyRules(grid)
+	// 	grid = newGeneration(grid)
+
+	// }
 
 }

@@ -26,3 +26,26 @@ func TestNewGrid(t *testing.T) {
 		t.Errorf("EXPECTED :%v BUT GOT %v", expected.data, actual.data)
 	}
 }
+
+func TestDisplayGrid(t *testing.T) {
+
+	grid := Grid{
+		size: 3,
+		data: [][]bool{
+			{true, false, false},
+			{false, true, false},
+			{false, false, true},
+		},
+	}
+	actual := displayGrid(grid)
+	expected := "* - - \n- * - \n- - * \n"
+
+	if actual != expected {
+		t.Errorf("Expected : \n%s ,but got : %s", expected, actual)
+	}
+
+}
+
+func TestCountNeighboursCorner(t *testing.T) {
+
+}
