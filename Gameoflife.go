@@ -52,17 +52,25 @@ func newGeneration(grid Grid) Grid {
 	return grid
 }
 
-func b2i(b bool) int {
+func b2i(b bool) uint {
 	if b {
 		return 1
 	}
 	return 0
 }
 
-func countAliveNeighbours(grid Grid, x uint, y uint) int {
-	if x == 0 && y == 0 {
+func countAliveNeighbours(grid Grid, x uint, y uint) uint {
+	s := grid.size - 1
+	if grid.size == 1 {
+		return uint(0)
+	}
+	if x == 0 && y == 0 { // top left corner
 		return b2i(grid.data[0][1]) + b2i(grid.data[1][1]) + b2i(grid.data[1][0])
 	}
+	if x == 0 && y == s { //top right corner
+		return b2i(grid.data[x][y-1]) + b2i(grid.data[x+1][y-1]) + b2i(grid.data[x+1][y])
+	}
+
 	return 0
 }
 
