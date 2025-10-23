@@ -10,7 +10,7 @@ type Grid struct {
 	data [][]bool
 }
 
-func newGrid(size uint) Grid {
+func newGrid(size uint, live ...int) Grid {
 
 	grid := make([][]bool, size)
 
@@ -18,11 +18,16 @@ func newGrid(size uint) Grid {
 		grid[i] = make([]bool, size)
 	}
 
+	for i := 0; i < len(live); i = i + 2 {
+		x := live[i]
+		y := live[i+1]
+		grid[x][y] = true
+	}
+
 	return Grid{
 		size: size,
 		data: grid,
 	}
-
 }
 
 func displayGrid(grid Grid) string {
@@ -61,13 +66,7 @@ func applyRules(grid Grid) Grid {
 
 func main() {
 	size := 10
-	grid := newGrid(uint(size))
-	grid.data[0][5] = true
-	grid.data[1][2] = true
-	grid.data[2][9] = true
-	grid.data[3][1] = true
-	grid.data[8][8] = true
-	grid.data[9][9] = true
+	grid := newGrid(uint(size), 0, 9, 4, 4, 9, 0, 0, 0, 9, 9)
 
 	fmt.Println(displayGrid(grid))
 
