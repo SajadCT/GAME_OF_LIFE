@@ -110,21 +110,24 @@ func countAliveNeighbours(grid Grid, x uint, y uint) uint {
 	if y == s { //right edge
 		return b2i(grid.data[x-1][y]) + b2i(grid.data[x+1][y]) + b2i(grid.data[x-1][y-1]) + b2i(grid.data[x][y-1]) + b2i(grid.data[x+1][y-1])
 	}
-	if x > 0 && x < s && y > 0 && y < s { //middle
-		return b2i(grid.data[x-1][y]) + b2i(grid.data[x+1][y]) + b2i(grid.data[x][y+1]) + b2i(grid.data[x][y-1]) + b2i(grid.data[x-1][y+1]) + b2i(grid.data[x+1][y+1]) + b2i(grid.data[x-1][y-1]) + b2i(grid.data[x+1][y-1])
 
-	}
-
-	return 0
-}
-
-func applyRules(grid Grid) Grid {
-	return grid
+	return b2i(grid.data[x-1][y]) + b2i(grid.data[x+1][y]) + b2i(grid.data[x][y+1]) + b2i(grid.data[x][y-1]) + b2i(grid.data[x-1][y+1]) + b2i(grid.data[x+1][y+1]) + b2i(grid.data[x-1][y-1]) + b2i(grid.data[x+1][y-1])
 }
 
 func main() {
-	size := 30
-	grid := newGrid(uint(size), 3, 4, 4, 4, 5, 4)
+	size := 40
+	grid := newGrid(uint(size),
+		12, 10, 13, 10, 14, 10, 18, 10, 19, 10, 20, 10,
+		10, 12, 15, 12, 17, 12, 22, 12,
+		10, 13, 15, 13, 17, 13, 22, 13,
+		10, 14, 15, 14, 17, 14, 22, 14,
+		12, 15, 13, 15, 14, 15, 18, 15, 19, 15, 20, 15,
+		12, 17, 13, 17, 14, 17, 18, 17, 19, 17, 20, 17,
+		10, 18, 15, 18, 17, 18, 22, 18,
+		10, 19, 15, 19, 17, 19, 22, 19,
+		10, 20, 15, 20, 17, 20, 22, 20,
+		12, 22, 13, 22, 14, 22, 18, 22, 19, 22, 20, 22,
+	)
 
 	for {
 		fmt.Print("\033[H\033[2J\033[3J")
