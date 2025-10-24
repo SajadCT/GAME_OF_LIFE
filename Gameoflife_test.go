@@ -302,3 +302,13 @@ func TestCountAliveNeighboursMiddle(t *testing.T) {
 		t.Errorf("Expected neighbour count to be 8, but got %d", actual)
 	}
 }
+
+func TestRule1(t *testing.T) { //underpopulation
+	grid := newGrid(3, 0, 0)
+	nextGen := runGeneration(grid)
+
+	if nextGen.data[0][0] {
+		t.Errorf("Expected cell[0,0] to be dead due to under population, but it is alive")
+	}
+
+}
