@@ -334,3 +334,13 @@ func TestRule3(t *testing.T) { //overpopulation
 	}
 
 }
+
+func TestRule4(t *testing.T) { //reproduction
+	grid := newGrid(4, 1, 1, 1, 2, 2, 2)
+	nextGen := runGeneration(grid)
+
+	if !nextGen.data[2][1] {
+		t.Errorf("Expected cell[2][1] to be alive due to reproduction, but its dead")
+	}
+
+}
