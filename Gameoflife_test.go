@@ -321,3 +321,16 @@ func TestRule2(t *testing.T) { //survival
 	}
 
 }
+func TestRule3(t *testing.T) { //overpopulation
+	grid := newGrid(4, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3)
+	nextGen := runGeneration(grid)
+
+	if nextGen.data[1][2] {
+		t.Errorf("Expected cell[1,2] to be dead due to over population, but its alive")
+	}
+
+	if nextGen.data[2][2] {
+		t.Errorf("Expected cell[1,2] to be dead due to over population, but its alive")
+	}
+
+}
