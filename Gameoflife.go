@@ -48,8 +48,20 @@ func displayGrid(grid Grid) string {
 
 }
 
-func newGeneration(grid Grid) Grid {
-	return grid
+func runGeneration(grid Grid) Grid {
+	newGen := newGrid(grid.size)
+	for i := 0; i < int(grid.size); i++ {
+		for j := 0; j < int(grid.size); j++ {
+			cell := grid.data[i][j]
+			count := countAliveNeighbours(grid, uint(i), uint(j))
+
+			if cell && count < 2 { //underpopulation
+				newGen.data[i][j] = false
+			}
+		}
+	}
+
+	return newGen
 }
 
 func b2i(b bool) uint {
