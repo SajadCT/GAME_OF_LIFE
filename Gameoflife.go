@@ -58,6 +58,9 @@ func runGeneration(grid Grid) Grid {
 			if cell && count < 2 { //underpopulation
 				newGen.data[i][j] = false
 			}
+			if cell && (count == 2 || count == 3) { //survival
+				newGen.data[i][j] = true
+			}
 		}
 	}
 
