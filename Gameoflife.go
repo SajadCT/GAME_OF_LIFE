@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 type Grid struct {
@@ -122,17 +123,14 @@ func applyRules(grid Grid) Grid {
 }
 
 func main() {
-	size := 10
-	grid := newGrid(uint(size), 0, 9, 4, 4, 9, 0, 0, 0, 9, 9)
+	size := 30
+	grid := newGrid(uint(size), 3, 4, 4, 4, 5, 4)
 
-	fmt.Println(displayGrid(grid))
-
-	// for {
-
-	// 	fmt.Println(displayGrid(grid))
-	// 	grid = applyRules(grid)
-	// 	grid = newGeneration(grid)
-
-	// }
+	for {
+		fmt.Print("\033[H\033[2J\033[3J")
+		fmt.Print(displayGrid(grid))
+		time.Sleep(1 * time.Second)
+		grid = runGeneration(grid)
+	}
 
 }
