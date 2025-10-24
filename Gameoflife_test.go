@@ -312,3 +312,12 @@ func TestRule1(t *testing.T) { //underpopulation
 	}
 
 }
+func TestRule2(t *testing.T) { //survival
+	grid := newGrid(4, 1, 1, 1, 2, 1, 3)
+	nextGen := runGeneration(grid)
+
+	if !nextGen.data[1][2] {
+		t.Errorf("Expected cell[1,2] to survive, but its dead")
+	}
+
+}
